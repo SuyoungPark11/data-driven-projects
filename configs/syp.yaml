@@ -8,7 +8,7 @@ paths:
 
 
 model:
-  model_name: "NCSOFT-Llama-VARCO-8B-Instruct" # 이미 pretrained 모델을 다운로드 받았다면 False로 설정
+  model_name: "NCSOFT/Llama-VARCO-8B-Instruct" # 이미 pretrained 모델을 다운로드 받았다면 False로 설정
   model_path: False
   embedding_model: "jhgan/ko-sbert-nli"    # vector store 생성을 위한 임베딩 생성 모델
   st_embedding_model: "jhgan/ko-sbert-sts" # Sentence Transformer 를 위한 임베딩 생성 모델

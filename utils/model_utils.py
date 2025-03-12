@@ -12,7 +12,7 @@ from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain_community.llms import HuggingFacePipeline
 
-from data_utils import extract_text_from_pdf 
+from .data_utils import extract_text_from_pdf 
 
 
 def initialize_model(model_name=None, model_path=None):
