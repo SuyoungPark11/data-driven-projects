@@ -1,4 +1,5 @@
 import pandas as pd
+import PyPDF2
 
 
 def load_data(train_path, test_path):
@@ -34,3 +35,10 @@ def create_qa_data(df, is_train=True):
         axis=1,
     )
     return pd.DataFrame(list(qa_data))
+
+
+def extract_text_from_pdf(pdf_path):
+    with open(pdf_path, "rb") as f:
+        reader = PyPDF2.PdfReader(f)
+        text = " ".join([page.extract_text() for page in reader.pages if page.extract_text()])
+    return text

@@ -1,14 +1,15 @@
 # This is an exmaple to write config.yaml
 paths:
-  train_data: "/data/ephemeral/Dacon/.dataset/train.csv"
-  test_data: "/data/ephemeral/Dacon/.dataset/test.csv"
-  submission: "/data/ephemeral/Dacon/.dataset/sample_submission.csv"
+  train_data: "/content/drive/MyDrive/dacon/dataset/train.csv"
+  test_data: "/content/drive/MyDrive/dacon/dataset/test.csv"
+  submission: "/content/drive/MyDrive/dacon/dataset/sample_submission.csv"
   output: "./baseline_submission.csv"
+  pdf_folder: "/content/drive/MyDrive/dacon/dataset/건설안전지침"
 
 
 model:
-  model_name: False # 이미 pretrained 모델을 다운로드 받았다면 False로 설정
-  model_path: "/data/ephemeral/Dacon/.pretrained/NCSOFT-Llama-VARCO-8B-Instruct"
+  model_name: "NCSOFT-Llama-VARCO-8B-Instruct" # 이미 pretrained 모델을 다운로드 받았다면 False로 설정
+  model_path: False
   embedding_model: "jhgan/ko-sbert-nli"    # vector store 생성을 위한 임베딩 생성 모델
   st_embedding_model: "jhgan/ko-sbert-sts" # Sentence Transformer 를 위한 임베딩 생성 모델
 
