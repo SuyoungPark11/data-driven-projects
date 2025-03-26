@@ -1,0 +1,35 @@
+# This is an exmaple to write config.yaml
+paths:
+  train_data: "/content/drive/MyDrive/dacon/dataset/train.csv"
+  test_data: "/content/drive/MyDrive/dacon/dataset/test.csv"
+  submission: "/content/drive/MyDrive/dacon/dataset/sample_submission.csv"
+  output: "./baseline_submission.csv"
+  pdf_folder: "/content/drive/MyDrive/dacon/dataset/건설안전지침"
+
+
+model:
+  model_name: "NCSOFT/Llama-VARCO-8B-Instruct" # 이미 pretrained 모델을 다운로드 받았다면 False로 설정
+  model_path: False
+  embedding_model: "jhgan/ko-sbert-nli"    # vector store 생성을 위한 임베딩 생성 모델
+  st_embedding_model: "jhgan/ko-sbert-sts" # Sentence Transformer 를 위한 임베딩 생성 모델
+
+
+prompt_template: |
+  ### 지침: 당신은 건설 안전 전문가입니다.
+  질문에 대한 답변을 핵심 내용만 요약하여 간략하게 작성하세요.
+  - 서론, 배경 설명 또는 추가 설명을 절대 포함하지 마세요.
+  - 다음과 같은 조치를 취할 것을 제안합니다: 와 같은 내용을 포함하지 마세요.
+
+  {context}
+
+  ### 질문:
+  {question}
+
+  [/INST]
+
+
+settings:
+  batch_size: 32
+  max_new_tokens: 64
+  search_model: "cosine" # cosine, similarity, mmr
+  search_k_num: 5

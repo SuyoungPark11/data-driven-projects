@@ -1,0 +1,33 @@
+name: 기능 제안
+description: 프로젝트를 위한 기능 및 아이디어를를 제안합니다.
+title: "[✨Feat]: "
+labels: ["enhancement"]
+body:
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: 문제 상황 정의(Define the problem you met)
+      description: 문제를 겪고 있거나 프로젝트 수행을 위해 개선할 부분이 있다면 설명해주세요.
+      value: |
+        예 : 새로운 LLM 적용하기 위해서는 현재 코드에서는 동작하지 않음
+    validations:
+      required: true
+
+  - type: textarea
+    id: to-do
+    attributes:
+      label: 문제 상황 해결을 위한 기능 및 아이디어 설명(Describe your approach to solve the above problem)
+      description: 해당 이슈에 대해 필요한 작업목록을 작성해주세요.
+      value: |
+        예 : 위 문제를 해결 하기 위해 LLM 적용 코드 필요
+        - [ ] Huggingface LLM 모델 적용 코드 추가 (run.py, model_utils.py)
+        - [ ] LLM 모델 적용을 위한 config 파일 수정 (example.yaml)
+    validations:
+      required: true
+
+  - type: textarea
+    id: reference
+    attributes:
+      label: 추가 정보 및 참고 자료(Additional Information and References)
+      description: 기능 요청과 관련된 추가적인 맥락이나 스크린샷을 여기에 추가해주세요!
