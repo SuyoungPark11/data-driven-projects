@@ -40,6 +40,7 @@ def main():
     train_data_path = cfg["paths"]["train_data"]
     test_data_path = cfg["paths"]["test_data"]
     submission_path = cfg["paths"]["submission"]
+    pdf_folder_path = cfg["paths"]["pdf_folder"]
     output_path = cfg["paths"]["output"]
     model_name = cfg["model"]["model_name"]
     model_path = cfg["model"]["model_path"]
@@ -61,7 +62,11 @@ def main():
     tokenizer, model = initialize_model(model_name, model_path)
 
     # Create vector store
-    vector_store = create_vector_store(train_data, embedding_model_name)
+    vector_store = create_vector_store(
+        train_data, 
+        embedding_model_name,
+        pdf_folder_path
+    )
 
     # Generate RAG chain
     qa_chain = create_qa_chain(

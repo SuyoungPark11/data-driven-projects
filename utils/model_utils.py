@@ -1,3 +1,4 @@
+import os
 import torch
 from transformers import (
     pipeline,
@@ -10,6 +11,8 @@ from langchain_community.vectorstores import FAISS
 from langchain.prompts import PromptTemplate
 from langchain.chains import RetrievalQA
 from langchain_community.llms import HuggingFacePipeline
+
+from .data_utils import extract_text_from_pdf 
 
 
 def initialize_model(model_name=None, model_path=None):
@@ -32,11 +35,27 @@ def initialize_model(model_name=None, model_path=None):
     return tokenizer, model
 
 
-def create_vector_store(train_data, embedding_model_name):
+def create_vector_store(
+        train_data, 
+        embedding_model_name,
+        pdf_folder,
+):
+    print("🔄 벡터 DB 생성 중...")
     embedding = HuggingFaceEmbeddings(model_name=embedding_model_name)
-    documents = [
+    train_documents = [
         f"Q: {q}\\nA: {a}" for q, a in zip(train_data["question"], train_data["answer"])
     ]
+
+    # pdf_folder가 주어진 경우, pdf 파일에서 텍스트 추출
+    pdf_documents = []
+    for pdf_file in os.listdir(pdf_folder):
+        if pdf_file.endswith(".pdf"):
+            pdf_path = os.path.join(pdf_folder, pdf_file)
+            text = extract_text_from_pdf(pdf_path)
+            pdf_documents.append(f"[{pdf_file}] 문서 내용:\n{text}")
+            
+    documents = train_documents + pdf_documents
+
     return FAISS.from_texts(documents, embedding)
 
 
